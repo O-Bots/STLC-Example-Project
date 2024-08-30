@@ -1,0 +1,176 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-08-30T11:32:46.290Z",
+    "end": "2024-08-30T11:33:08.590Z",
+    "duration": 22300,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "28e430f6-edd5-4072-817f-07591fd87d85",
+      "title": "",
+      "fullFile": "C:\\Users\\Okechi\\Desktop\\Javascript\\Projects\\STLC Example Project\\tests\\selenium\\accountFunctionality.js",
+      "file": "\\tests\\selenium\\accountFunctionality.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6269fe0f-5a8d-47ea-8b95-55120e7e828f",
+          "title": "Tests_for_account_functionality",
+          "fullFile": "C:\\Users\\Okechi\\Desktop\\Javascript\\Projects\\STLC Example Project\\tests\\selenium\\accountFunctionality.js",
+          "file": "\\tests\\selenium\\accountFunctionality.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Tests_for_account_functionality\"",
+              "fullTitle": "Tests_for_account_functionality \"before each\" hook in \"Tests_for_account_functionality\"",
+              "timedOut": false,
+              "duration": 3221,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Launch a blank Chrome browser\ndriver = await new Builder().forBrowser(Browser.CHROME).build();\n//Moves browser window \nawait driver.manage().window().setRect({x: 10, y: -1440 });\n\n//Navigate to website\nawait driver.get('https://magento.softwaretestingboard.com/');",
+              "err": {},
+              "uuid": "70f9bd47-d505-4452-aeba-189b66cc8d7e",
+              "parentUUID": "6269fe0f-5a8d-47ea-8b95-55120e7e828f",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Successfully creates an account",
+              "fullTitle": "Tests_for_account_functionality Successfully creates an account",
+              "timedOut": false,
+              "duration": 3784,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"Account information used\",\n  \"value\": {\n    \"firstName\": \"Judd\",\n    \"lastName\": \"Lehner\",\n    \"email\": \"Dorian_West5@gmail.com\",\n    \"password\": \"thqbbwQgXb4dGhO\"\n  }\n}",
+              "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[3]')).click();\nlet currentUrl = await driver.getCurrentUrl();\n//Chai assert to verify the page is correct\nexpect(currentUrl).to.contain(\"account/create/\");\n//Enter account information\nawait driver.findElement(By.id('firstname')).sendKeys(person.firstName);\nawait driver.findElement(By.id('lastname')).sendKeys(person.lastName);\nawait driver.findElement(By.id('email_address')).sendKeys(person.email);\nawait driver.findElement(By.id('password')).sendKeys(person.password);\nawait driver.findElement(By.id('password-confirmation')).sendKeys(person.password);\n//Add the account details to the report\naddContext(this, {\n    title: \"Account information used\",\n    value: {\n        firstName: person.firstName,\n        lastName: person.lastName,\n        email: person.email,\n        password: person.password\n    }\n});\n\n//Submit new account information\nawait driver.findElement(By.xpath(\"//button[@class='action submit primary']\")).click();\n//Verify account has been created\nawait driver.findElement(By.xpath(\"//div[@class='message-success success message']/div\")).isDisplayed();",
+              "err": {},
+              "uuid": "dce2d990-40b3-45fa-941b-01a0638ef88f",
+              "parentUUID": "6269fe0f-5a8d-47ea-8b95-55120e7e828f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Unable to login with the incorrect email and correct password to a previously created account",
+              "fullTitle": "Tests_for_account_functionality Unable to login with the incorrect email and correct password to a previously created account",
+              "timedOut": false,
+              "duration": 2110,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[2]')).click();\n//Chai assert to verify the page is correct\nconst loginPageCheck = await driver.findElement(By.xpath('//h1[@class=\"page-title\"]/span[@class=\"base\"]')).getText();\nexpect(loginPageCheck).to.contain(\"Customer Login\");\n//Enter login information\nawait driver.findElement(By.id('email')).sendKeys(person2.email);\nawait driver.findElement(By.id('pass')).sendKeys(person.password);\n//Submit login information\nawait driver.findElement(By.xpath(\"//button[@class='action login primary']\")).click();\n//Verify sign-in error\nawait driver.findElement(By.xpath(\"//div[@class='message-error error message']/div\")).isDisplayed();",
+              "err": {},
+              "uuid": "46cd2871-d10b-48ff-a161-038516b47efc",
+              "parentUUID": "6269fe0f-5a8d-47ea-8b95-55120e7e828f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Unable to login with the correct email and incorrect password to a previously created account",
+              "fullTitle": "Tests_for_account_functionality Unable to login with the correct email and incorrect password to a previously created account",
+              "timedOut": false,
+              "duration": 2124,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[2]')).click();\n//Chai assert to verify the page is correct\nconst loginPageCheck = await driver.findElement(By.xpath('//h1[@class=\"page-title\"]/span[@class=\"base\"]')).getText();\nexpect(loginPageCheck).to.contain(\"Customer Login\");\n//Enter login information\nawait driver.findElement(By.id('email')).sendKeys(person.email);\nawait driver.findElement(By.id('pass')).sendKeys(person2.password);\n//Submit login information\nawait driver.findElement(By.xpath(\"//button[@class='action login primary']\")).click();\n//Verify sign-in error\nawait driver.findElement(By.xpath(\"//div[@class='message-error error message']/div\")).isDisplayed();",
+              "err": {},
+              "uuid": "40caee3f-e1f9-4ca2-bafa-c503901686ac",
+              "parentUUID": "6269fe0f-5a8d-47ea-8b95-55120e7e828f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Unable to login with the incorrect email/password to a previously created account",
+              "fullTitle": "Tests_for_account_functionality Unable to login with the incorrect email/password to a previously created account",
+              "timedOut": false,
+              "duration": 2185,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[2]')).click();\n//Chai assert to verify the page is correct\nconst loginPageCheck = await driver.findElement(By.xpath('//h1[@class=\"page-title\"]/span[@class=\"base\"]')).getText();\nexpect(loginPageCheck).to.contain(\"Customer Login\");\n//Enter login information\nawait driver.findElement(By.id('email')).sendKeys(person2.email);\nawait driver.findElement(By.id('pass')).sendKeys(person2.password);\n//Submit login information\nawait driver.findElement(By.xpath(\"//button[@class='action login primary']\")).click();\n//Verify sign-in error\nawait driver.findElement(By.xpath(\"//div[@class='message-error error message']/div\")).isDisplayed();",
+              "err": {},
+              "uuid": "9cd53fb8-df03-400e-ac8f-3b9b8b6191b7",
+              "parentUUID": "6269fe0f-5a8d-47ea-8b95-55120e7e828f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "dce2d990-40b3-45fa-941b-01a0638ef88f",
+            "46cd2871-d10b-48ff-a161-038516b47efc",
+            "40caee3f-e1f9-4ca2-bafa-c503901686ac",
+            "9cd53fb8-df03-400e-ac8f-3b9b8b6191b7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10203,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.7.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
