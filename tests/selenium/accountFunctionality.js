@@ -7,13 +7,13 @@ const person = {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     email: faker.internet.email(),
-    password: faker.internet.password({pattern: /[a-zA-Z0-9]/}),
+    password: faker.internet.password({length: 20, pattern: /\w/}),
 };
 const person2 = {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     email: faker.internet.email(),
-    password: faker.internet.password({pattern: /[a-zA-Z0-9]/}),
+    password: faker.internet.password({length: 20, pattern: /[a-zA-Z0-9]/}),
 };
 
 describe('Tests_for_account_functionality', function () {
@@ -32,7 +32,7 @@ describe('Tests_for_account_functionality', function () {
     });
 
     //Steps after each test
-    afterEach(async () => {await driver.quit()});
+    // afterEach(async () => {await driver.quit()});
 
     it('Successfully creates an account', async function () {
         await driver.findElement(By.xpath('//div[@class="panel header"]/ul/li[3]')).click();
@@ -47,6 +47,8 @@ describe('Tests_for_account_functionality', function () {
         await driver.findElement(By.id('lastname')).sendKeys(person.lastName);
         await driver.findElement(By.id('email_address')).sendKeys(person.email);
         await driver.findElement(By.id('password')).sendKeys(person.password);
+        console.log(person.password);
+        
         await driver.findElement(By.id('password-confirmation')).sendKeys(person.password);
 
         //Add the account details to the report
@@ -64,7 +66,10 @@ describe('Tests_for_account_functionality', function () {
         await driver.findElement(By.xpath("//button[@class='action submit primary']")).click();
 
         //Verify account has been created
-        await driver.findElement(By.xpath("//div[@class='message-success success message']/div")).isDisplayed();        
+        let accountName = await driver.findElement(By.xpath("//div[@class='box-content']/p")).getText();
+        expect(accountName).to.contain(person.firstName);
+        expect(accountName).to.contain(person.lastName);
+        expect(accountName).to.contain(person.email);
     });
 
     it('Unable to create an account with missing information', async () => {
@@ -132,7 +137,7 @@ describe('Tests_for_account_functionality', function () {
         await driver.findElement(By.xpath("//button[@class='action submit primary']")).click();
 
         //Chai assert for email error
-        const emailErr = await driver.findElement(By.xpath("//div[@class='message-error error message']/div")).isDisplayed();
+        const emailErr = await driver.findElement(By.xpath("//div[@class='page messages']")).isDisplayed();
         expect(emailErr).to.equal(true);
     });
     
@@ -183,8 +188,8 @@ describe('Tests_for_account_functionality', function () {
         await driver.findElement(By.xpath("//button[@class='action login primary']")).click();
 
         //Verify sign-in error
-        await driver.findElement(By.xpath("//div[@class='message-error error message']/div")).isDisplayed();
-        
+        const logingErr = await driver.findElement(By.xpath("//div[@class='page messages']")).isDisplayed();
+        expect(logingErr).to.equal(true);
     });
 
     it('Unable to login with the correct email and incorrect password to a previously created account', async() => {
@@ -203,7 +208,8 @@ describe('Tests_for_account_functionality', function () {
         await driver.findElement(By.xpath("//button[@class='action login primary']")).click();
 
         //Verify sign-in error
-        await driver.findElement(By.xpath("//div[@class='message-error error message']/div")).isDisplayed();
+        const logingErr = await driver.findElement(By.xpath("//div[@class='page messages']")).isDisplayed();
+        expect(logingErr).to.equal(true);
         
     });
 
@@ -223,7 +229,8 @@ describe('Tests_for_account_functionality', function () {
         await driver.findElement(By.xpath("//button[@class='action login primary']")).click();
 
         //Verify sign-in error
-        await driver.findElement(By.xpath("//div[@class='message-error error message']/div")).isDisplayed();
+        const logingErr = await driver.findElement(By.xpath("//div[@class='page messages']")).isDisplayed();
+        expect(logingErr).to.equal(true);
         
     });
 

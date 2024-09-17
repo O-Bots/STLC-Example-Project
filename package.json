@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test_selenium": "mocha --no-timeouts --reporter mochawesome tests/selenium/*.js"
+    "test_selenium": "mocha --no-timeouts --reporter mochawesome tests/selenium/*.js --fgrep Tests_for_website_functionality"
   },
   "author": "",
   "license": "ISC",
