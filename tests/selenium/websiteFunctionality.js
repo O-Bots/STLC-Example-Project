@@ -28,7 +28,49 @@ describe('Tests_for_website_functionality' , function () {
     //Steps after each test
     // afterEach(async () => {await driver.quit()});
 
-    it('Successfully navigates to the correct product page', async () => {
+    // it('Successfully navigates to the correct product page', async () => {
+    //     //Navigate to a product catagory
+    //     //Store category name
+    //     const categoryName = await driver.findElement(By.xpath("//nav[@class='navigation']//li[2]/a")).getText();
+        
+    //     //Click category
+    //     await driver.findElement(By.xpath(`//nav[@class='navigation']//li[2]`)).click();
+
+    //     //Store category name
+    //     const subCategoryName = await driver.findElement(By.xpath("//ol[@class='items']/li[1]/a")).getText();
+        
+    //     //Click sub category
+    //     await driver.findElement(By.xpath(`//ol[@class='items']/li[1]/a`)).click();
+
+    //     //Verify the page is correct
+    //     const previousBreadcrumb = await driver.findElement(By.xpath('//div[@class="breadcrumbs"]/ul/li[2]')).getText();
+    //     const currentBreadcrumb = await driver.findElement(By.xpath('//div[@class="breadcrumbs"]/ul/li[3]')).getText();
+    //     expect(previousBreadcrumb).to.equal(categoryName);
+    //     expect(currentBreadcrumb).to.equal(subCategoryName);
+
+    //     //Set up rng to choose product
+    //     const products = await driver.findElements(By.xpath("//ol[@class='products list items product-items']/li"));
+    //     let rngProduct = Math.floor(Math.random() * products.length + 1);
+
+    //     //Store product name and price
+    //     const productName = await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).getText();
+    //     const productPrice = await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//span[@class="normal-price"]/span/span[2]/span`)).getText();
+
+    //     //Click chosen product
+    //     await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).click();
+
+    //     //Verify page is correct
+    //     let currentUrl = await driver.getCurrentUrl()
+    //     expect(currentUrl.toLocaleLowerCase()).to.contain(productName.replace(/\s/g, "-").toLocaleLowerCase());
+
+    //     //Verify product information
+    //     const productPageName = await driver.findElement(By.xpath("//div[@class='product-info-main']/div[1]/h1/span")).getText();
+    //     const productPagePrice = await driver.findElement(By.xpath("//div[@class='product-info-main']/div[3]//span[@class='normal-price']/span/span[2]/span")).getText();
+    //     expect(productPageName).to.equal(productName);
+    //     expect(productPagePrice).to.equal(productPrice);
+    // });
+    
+    it('Navigates to the product page using the breadcrumbs', async () => {
         //Navigate to a product catagory
         //Store category name
         const categoryName = await driver.findElement(By.xpath("//nav[@class='navigation']//li[2]/a")).getText();
@@ -43,10 +85,10 @@ describe('Tests_for_website_functionality' , function () {
         await driver.findElement(By.xpath(`//ol[@class='items']/li[1]/a`)).click();
 
         //Verify the page is correct
-        const previousBredcrumb = await driver.findElement(By.xpath('//div[@class="breadcrumbs"]/ul/li[2]')).getText();
-        const currentBredcrumb = await driver.findElement(By.xpath('//div[@class="breadcrumbs"]/ul/li[3]')).getText();
-        expect(previousBredcrumb).to.equal(categoryName);
-        expect(currentBredcrumb).to.equal(subCategoryName);
+        const previousBreadcrumb = await driver.findElement(By.xpath('//div[@class="breadcrumbs"]/ul/li[2]')).getText();
+        const currentBreadcrumb = await driver.findElement(By.xpath('//div[@class="breadcrumbs"]/ul/li[3]')).getText();
+        expect(previousBreadcrumb).to.equal(categoryName);
+        expect(currentBreadcrumb).to.equal(subCategoryName);
 
         //Set up rng to choose product
         const products = await driver.findElements(By.xpath("//ol[@class='products list items product-items']/li"));
@@ -68,5 +110,25 @@ describe('Tests_for_website_functionality' , function () {
         const productPagePrice = await driver.findElement(By.xpath("//div[@class='product-info-main']/div[3]//span[@class='normal-price']/span/span[2]/span")).getText();
         expect(productPageName).to.equal(productName);
         expect(productPagePrice).to.equal(productPrice);
+        
+        //Navigate to the category page via breadcrumb
+        await driver.findElement(By.xpath('//div[@class="breadcrumbs"]/ul/li[2]')).click();
+
+        //Store page info
+        const categoryPageTitle = await driver.findElement(By.xpath('//h1[@id="page-title-heading"]/span')).getText();
+        expect(categoryName).to.equal(categoryPageTitle);
+
+        //Navigate back to the sub category
+        await driver.findElement(By.xpath(`//ol[@class='items']/li[1]/a`)).click();
+
+        //Navigate back to the product
+        await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).click();
+
+        //Navigate to the subcategory page via breadcrumb
+        await driver.findElement(By.xpath(`//div[@class="breadcrumbs"]/ul/li[3]/a`)).click();
+
+        //Store page info
+        const subCategoryPageTitle = await driver.findElement(By.xpath('//h1[@id="page-title-heading"]/span')).getText();
+        expect(subCategoryName).to.equal(subCategoryPageTitle);
     });
 });
