@@ -1,15 +1,15 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 0,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
-    "failures": 1,
-    "start": "2024-09-26T18:18:31.594Z",
-    "end": "2024-09-26T18:18:37.142Z",
-    "duration": 5548,
-    "testsRegistered": 9,
-    "passPercent": 0,
+    "failures": 0,
+    "start": "2024-10-17T14:03:01.000Z",
+    "end": "2024-10-17T14:03:12.471Z",
+    "duration": 11471,
+    "testsRegistered": 10,
+    "passPercent": 20,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "52b14e92-51ef-4925-8f7c-1ad6d17a7b35",
+      "uuid": "854f1bcc-258a-4fd7-a5ca-d662940ff40d",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "767aafcc-d0d2-4420-b8e7-f7f423e203de",
+          "uuid": "56eaac53-cf34-4134-8061-cb1c6252b2cc",
           "title": "Tests_for_account_functionality",
           "fullFile": "C:\\Users\\Okechi\\Desktop\\Javascript\\Projects\\STLC Example Project\\tests\\selenium\\accountFunctionality.js",
           "file": "\\tests\\selenium\\accountFunctionality.js",
@@ -45,7 +45,7 @@
               "context": null,
               "code": "//Launch a blank Chrome browser\ndriver = await new Builder().forBrowser(Browser.CHROME).build();\n//Moves browser window \nawait driver.manage().window().setRect({x: 10, y: -1440 });\n\n//Navigate to website\nawait driver.get('https://magento.softwaretestingboard.com/');",
               "err": {},
-              "uuid": "8dbcd7a3-289d-4866-8cc2-f49d14e52d4a",
+              "uuid": "3788c7c1-89fd-4ff3-bd52-fff151a97660",
               "parentUUID": null,
               "isHook": true,
               "skipped": false
@@ -66,7 +66,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[3]')).click();\nlet currentUrl = await driver.getCurrentUrl();\n//Chai assert to verify the page is correct\nexpect(currentUrl).to.contain(\"account/create/\");\n//Enter account information\nawait driver.findElement(By.id('firstname')).sendKeys(person.firstName);\nawait driver.findElement(By.id('lastname')).sendKeys(person.lastName);\nawait driver.findElement(By.id('email_address')).sendKeys(person.email);\nawait driver.findElement(By.id('password')).sendKeys(person.password);\nconsole.log(person.password);\n\nawait driver.findElement(By.id('password-confirmation')).sendKeys(person.password);\n//Add the account details to the report\naddContext(this, {\n    title: \"Account information used\",\n    value: {\n        firstName: person.firstName,\n        lastName: person.lastName,\n        email: person.email,\n        password: person.password\n    }\n});\n\n//Submit new account information\nawait driver.findElement(By.xpath(\"//button[@class='action submit primary']\")).click();\n//Verify account has been created\nlet accountName = await driver.findElement(By.xpath(\"//div[@class='box-content']/p\")).getText();\nexpect(accountName).to.contain(person.firstName);\nexpect(accountName).to.contain(person.lastName);\nexpect(accountName).to.contain(person.email);",
               "err": {},
-              "uuid": "281a87c6-7441-45fb-a43b-9a3a4e4d16fc",
+              "uuid": "22fdeb72-3598-4ef1-8a0a-0dda2b04524b",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -84,7 +84,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[3]')).click();\nlet currentUrl = await driver.getCurrentUrl();\n//Chai assert to verify the page is correct\nexpect(currentUrl).to.contain(\"account/create/\");\n//Enter account information\nawait driver.findElement(By.id('firstname')).sendKeys(person2.firstName);\n// await driver.findElement(By.id('lastname')).sendKeys(person2.lastName);\nawait driver.findElement(By.id('email_address')).sendKeys(person2.email);\nawait driver.findElement(By.id('password')).sendKeys(person2.password);\nawait driver.findElement(By.id('password-confirmation')).sendKeys(person2.password);\n//Submit new account information\nawait driver.findElement(By.xpath(\"//button[@class='action submit primary']\")).click();\n//Chai assert for required info error\nconst requiredErr = await driver.findElement(By.xpath(\"//div[@class='mage-error']\")).isDisplayed();\nexpect(requiredErr).to.equal(true);",
               "err": {},
-              "uuid": "8c914217-6e75-4599-96d1-6cbd7c588c89",
+              "uuid": "1dc01cb0-4929-465f-9ee8-62afe4532ffa",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -102,7 +102,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[3]')).click();\nlet currentUrl = await driver.getCurrentUrl();\n//Chai assert to verify the page is correct\nexpect(currentUrl).to.contain(\"account/create/\");\n//Enter account information\nawait driver.findElement(By.id('firstname')).sendKeys(person2.firstName);\nawait driver.findElement(By.id('lastname')).sendKeys(person2.lastName);\nawait driver.findElement(By.id('email_address')).sendKeys(person2.email);\nawait driver.findElement(By.id('password')).sendKeys(person2.password);\nawait driver.findElement(By.id('password-confirmation')).sendKeys(person2.password+1);\n//Submit new account information\nawait driver.findElement(By.xpath(\"//button[@class='action submit primary']\")).click();\n//Chai assert for password error\nconst passwordErr = await driver.findElement(By.xpath(\"//div[@id='password-confirmation-error']\")).isDisplayed();\nexpect(passwordErr).to.equal(true);",
               "err": {},
-              "uuid": "48b0c339-16f4-467d-9cdb-dbb54f1e069f",
+              "uuid": "eb1576d0-1049-4c46-b26a-e8fb9b4ea9c0",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -120,7 +120,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[3]')).click();\nlet currentUrl = await driver.getCurrentUrl();\n//Chai assert to verify the page is correct\nexpect(currentUrl).to.contain(\"account/create/\");\n//Enter account information\nawait driver.findElement(By.id('firstname')).sendKeys(person.firstName);\nawait driver.findElement(By.id('lastname')).sendKeys(person.lastName);\nawait driver.findElement(By.id('email_address')).sendKeys(person.email);\nawait driver.findElement(By.id('password')).sendKeys(person.password);\nawait driver.findElement(By.id('password-confirmation')).sendKeys(person.password);\n//Submit new account information\nawait driver.findElement(By.xpath(\"//button[@class='action submit primary']\")).click();\n//Chai assert for email error\nconst emailErr = await driver.findElement(By.xpath(\"//div[@class='page messages']\")).isDisplayed();\nexpect(emailErr).to.equal(true);",
               "err": {},
-              "uuid": "33c504b7-f060-49f6-bb0a-a2efd32ff3ec",
+              "uuid": "3cc4bb33-3552-4167-b97a-38acc1326aba",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -138,7 +138,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[2]')).click();\n//Chai assert to verify the page is correct\nconst loginPageCheck = await driver.findElement(By.xpath('//h1[@class=\"page-title\"]/span[@class=\"base\"]')).getText();\nexpect(loginPageCheck).to.contain(\"Customer Login\");\n//Enter login information\nawait driver.findElement(By.id('email')).sendKeys(person.email);\nawait driver.findElement(By.id('pass')).sendKeys(person.password);\n\n//Submit login information\nawait driver.findElement(By.xpath(\"//button[@class='action login primary']\")).click();\n\n//Navigate to account information\nawait driver.findElement(By.xpath(\"//button[@class='action switch']\")).click();\nawait driver.findElement(By.xpath(\"//div[@class='customer-menu']/ul/li[1]\")).click();\n\nlet currentUrl = await driver.getCurrentUrl();\n\n//Chai assert to verify the page is correct\nexpect(currentUrl).to.contain(\"customer/account/\");\n\nlet accountInformation = await driver.findElement(By.xpath(\"//div[@class='box-content']/p\")).getText();\nexpect(accountInformation).to.contain(person.email);\nexpect(accountInformation).to.contain(person.firstName);\nexpect(accountInformation).to.contain(person.lastName);",
               "err": {},
-              "uuid": "6304613a-f3d3-40ca-bdc4-cbe12aaf0d1e",
+              "uuid": "3c0fb77d-34d6-439d-9261-45a63df22b0b",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -156,7 +156,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[2]')).click();\n//Chai assert to verify the page is correct\nconst loginPageCheck = await driver.findElement(By.xpath('//h1[@class=\"page-title\"]/span[@class=\"base\"]')).getText();\nexpect(loginPageCheck).to.contain(\"Customer Login\");\n//Enter login information\nawait driver.findElement(By.id('email')).sendKeys(person2.email);\nawait driver.findElement(By.id('pass')).sendKeys(person.password);\n//Submit login information\nawait driver.findElement(By.xpath(\"//button[@class='action login primary']\")).click();\n//Verify sign-in error\nconst logingErr = await driver.findElement(By.xpath(\"//div[@class='page messages']\")).isDisplayed();\nexpect(logingErr).to.equal(true);",
               "err": {},
-              "uuid": "b6306da2-8b4c-410e-b54a-2e8bf8a7b8f9",
+              "uuid": "f1dbfcbf-13e6-42d0-9c00-28e1544b3a06",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -174,7 +174,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[2]')).click();\n//Chai assert to verify the page is correct\nconst loginPageCheck = await driver.findElement(By.xpath('//h1[@class=\"page-title\"]/span[@class=\"base\"]')).getText();\nexpect(loginPageCheck).to.contain(\"Customer Login\");\n//Enter login information\nawait driver.findElement(By.id('email')).sendKeys(person.email);\nawait driver.findElement(By.id('pass')).sendKeys(person2.password);\n//Submit login information\nawait driver.findElement(By.xpath(\"//button[@class='action login primary']\")).click();\n//Verify sign-in error\nconst logingErr = await driver.findElement(By.xpath(\"//div[@class='page messages']\")).isDisplayed();\nexpect(logingErr).to.equal(true);",
               "err": {},
-              "uuid": "126307ca-636d-40ef-94d0-0821455e72c4",
+              "uuid": "cc0d7ab6-ac5b-4ff0-b2e7-1ff35a37f229",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -192,7 +192,7 @@
               "context": null,
               "code": "await driver.findElement(By.xpath('//div[@class=\"panel header\"]/ul/li[2]')).click();\n//Chai assert to verify the page is correct\nconst loginPageCheck = await driver.findElement(By.xpath('//h1[@class=\"page-title\"]/span[@class=\"base\"]')).getText();\nexpect(loginPageCheck).to.contain(\"Customer Login\");\n//Enter login information\nawait driver.findElement(By.id('email')).sendKeys(person2.email);\nawait driver.findElement(By.id('pass')).sendKeys(person2.password);\n//Submit login information\nawait driver.findElement(By.xpath(\"//button[@class='action login primary']\")).click();\n//Verify sign-in error\nconst logingErr = await driver.findElement(By.xpath(\"//div[@class='page messages']\")).isDisplayed();\nexpect(logingErr).to.equal(true);",
               "err": {},
-              "uuid": "03b0ff1c-e25b-44ba-8a59-098bfd7befe5",
+              "uuid": "3c5a2d77-adc8-4077-892b-2440db582643",
               "parentUUID": null,
               "isHook": false,
               "skipped": true
@@ -203,14 +203,14 @@
           "failures": [],
           "pending": [],
           "skipped": [
-            "281a87c6-7441-45fb-a43b-9a3a4e4d16fc",
-            "8c914217-6e75-4599-96d1-6cbd7c588c89",
-            "48b0c339-16f4-467d-9cdb-dbb54f1e069f",
-            "33c504b7-f060-49f6-bb0a-a2efd32ff3ec",
-            "6304613a-f3d3-40ca-bdc4-cbe12aaf0d1e",
-            "b6306da2-8b4c-410e-b54a-2e8bf8a7b8f9",
-            "126307ca-636d-40ef-94d0-0821455e72c4",
-            "03b0ff1c-e25b-44ba-8a59-098bfd7befe5"
+            "22fdeb72-3598-4ef1-8a0a-0dda2b04524b",
+            "1dc01cb0-4929-465f-9ee8-62afe4532ffa",
+            "eb1576d0-1049-4c46-b26a-e8fb9b4ea9c0",
+            "3cc4bb33-3552-4167-b97a-38acc1326aba",
+            "3c0fb77d-34d6-439d-9261-45a63df22b0b",
+            "f1dbfcbf-13e6-42d0-9c00-28e1544b3a06",
+            "cc0d7ab6-ac5b-4ff0-b2e7-1ff35a37f229",
+            "3c5a2d77-adc8-4077-892b-2440db582643"
           ],
           "duration": 0,
           "root": false,
@@ -218,7 +218,7 @@
           "_timeout": 0
         },
         {
-          "uuid": "356f2251-3987-4b5f-9849-13dc802c6d67",
+          "uuid": "bed6e3ef-4957-496d-8af2-279de4c2673e",
           "title": "Tests_for_website_functionality",
           "fullFile": "C:\\Users\\Okechi\\Desktop\\Javascript\\Projects\\STLC Example Project\\tests\\selenium\\websiteFunctionality.js",
           "file": "\\tests\\selenium\\websiteFunctionality.js",
@@ -227,7 +227,7 @@
               "title": "\"before each\" hook in \"Tests_for_website_functionality\"",
               "fullTitle": "Tests_for_website_functionality \"before each\" hook in \"Tests_for_website_functionality\"",
               "timedOut": false,
-              "duration": 2487,
+              "duration": 3050,
               "state": null,
               "speed": null,
               "pass": false,
@@ -236,8 +236,8 @@
               "context": null,
               "code": "//Launch a blank Chrome browser\ndriver = await new Builder().forBrowser(Browser.CHROME).build();\n//Moves browser window \nawait driver.manage().window().setRect({x: 10, y: -1440 });\n\n//Navigate to website\nawait driver.get('https://magento.softwaretestingboard.com/');",
               "err": {},
-              "uuid": "1f9bcae0-45fd-4661-9091-e2e41bfb8780",
-              "parentUUID": "356f2251-3987-4b5f-9849-13dc802c6d67",
+              "uuid": "c2171817-d694-4d1e-bf08-434e272ca849",
+              "parentUUID": "bed6e3ef-4957-496d-8af2-279de4c2673e",
               "isHook": true,
               "skipped": false
             }
@@ -248,33 +248,48 @@
               "title": "Navigates to the product page using the breadcrumbs",
               "fullTitle": "Tests_for_website_functionality Navigates to the product page using the breadcrumbs",
               "timedOut": false,
-              "duration": 3055,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 5260,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
-              "code": "//Navigate to a product catagory\n//Store category name\nconst categoryName = await driver.findElement(By.xpath(\"//nav[@class='navigation']//li[2]/a\")).getText();\n\n//Click category\nawait driver.findElement(By.xpath(`//nav[@class='navigation']//li[2]`)).click();\n//Store category name\nconst subCategoryName = await driver.findElement(By.xpath(\"//ol[@class='items']/li[1]/a\")).getText();\n\n//Click sub category\nawait driver.findElement(By.xpath(`//ol[@class='items']/li[1]/a`)).click();\n//Verify the page is correct\nconst previousBreadcrumb = await driver.findElement(By.xpath('//div[@class=\"breadcrumbs\"]/ul/li[2]')).getText();\nconst currentBreadcrumb = await driver.findElement(By.xpath('//div[@class=\"breadcrumbs\"]/ul/li[3]')).getText();\nexpect(previousBreadcrumb).to.equal(categoryName);\nexpect(currentBreadcrumb).to.equal(subCategoryName);\n//Set up rng to choose product\nconst products = await driver.findElements(By.xpath(\"//ol[@class='products list items product-items']/li\"));\nlet rngProduct = Math.floor(Math.random() * products.length + 1);\n//Store product name and price\nconst productName = await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).getText();\nconst productPrice = await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//span[@class=\"normal-price\"]/span/span[2]/span`)).getText();\n//Click chosen product\nawait driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).click();\n//Verify page is correct\nlet currentUrl = await driver.getCurrentUrl()\nexpect(currentUrl.toLocaleLowerCase()).to.contain(productName.replace(/\\s/g, \"-\").toLocaleLowerCase());\n//Verify product information\nconst productPageName = await driver.findElement(By.xpath(\"//div[@class='product-info-main']/div[1]/h1/span\")).getText();\nconst productPagePrice = await driver.findElement(By.xpath(\"//div[@class='product-info-main']/div[3]//span[@class='normal-price']/span/span[2]/span\")).getText();\nexpect(productPageName).to.equal(productName);\nexpect(productPagePrice).to.equal(productPrice);\n\n//Navigate to the category page via breadcrumb\nawait driver.findElement(By.xpath('//div[@class=\"breadcrumbs\"]/ul/li[2]')).click();\n//Store page info\nconst categoryPageTitle = await driver.findElement(By.xpath('//h1[@id=\"page-title-heading\"]/span')).getText();\nexpect(categoryName).to.equal(categoryPageTitle);\n//Navigate back to the sub category\nawait driver.findElement(By.xpath(`//ol[@class='items']/li[1]/a`)).click();\n//Navigate back to the product\nawait driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).click();\n//Navigate to the subcategory page via breadcrumb\nawait driver.findElement(By.xpath(`//div[@class=\"breadcrumbs\"]/ul/li[3]/a`)).click();\n//Store page info\nconst subCategoryPageTitle = await driver.findElement(By.xpath('//h1[@id=\"page-title-heading\"]/span')).getText();\nexpect(subCategoryName).to.equal(subCategoryPageTitle);",
-              "err": {
-                "message": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[@class=\"breadcrumbs\"]/ul/li[2]\"}\n  (Session info: chrome=129.0.6668.60)",
-                "estack": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[@class=\"breadcrumbs\"]/ul/li[2]\"}\n  (Session info: chrome=129.0.6668.60)\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:521:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:514:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:446:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:742:17)\n    at async toWireValue (node_modules\\selenium-webdriver\\lib\\webdriver.js:147:15)\n    at async C:\\Users\\Okechi\\Desktop\\Javascript\\Projects\\STLC Example Project\\node_modules\\selenium-webdriver\\lib\\webdriver.js:193:16\n    at async forEachKey (node_modules\\selenium-webdriver\\lib\\webdriver.js:187:9)\n    at async convertKeys (node_modules\\selenium-webdriver\\lib\\webdriver.js:192:3)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:740:22)\n    at async Context.<anonymous> (tests\\selenium\\websiteFunctionality.js:115:9)",
-                "diff": null
-              },
-              "uuid": "519dcea2-ebd4-4556-909f-6fcb82b16623",
-              "parentUUID": "356f2251-3987-4b5f-9849-13dc802c6d67",
+              "code": "//Navigate to a product catagory\n//Store category name\nconst categoryName = await driver.findElement(By.xpath(\"//nav[@class='navigation']//li[2]/a\")).getText();\n\n//Click category\nawait driver.findElement(By.xpath(`//nav[@class='navigation']//li[2]`)).click();\n//Store category name\nconst subCategoryName = await driver.findElement(By.xpath(\"//ol[@class='items']/li[1]/a\")).getText();\n\n//Click sub category\nawait driver.findElement(By.xpath(`//ol[@class='items']/li[1]/a`)).click();\n//Verify the page is correct\nconst previousBreadcrumb = await driver.findElement(By.xpath('//div[@class=\"breadcrumbs\"]/ul/li[2]')).getText();\nconst currentBreadcrumb = await driver.findElement(By.xpath('//div[@class=\"breadcrumbs\"]/ul/li[3]')).getText();\nexpect(previousBreadcrumb).to.equal(categoryName);\nexpect(currentBreadcrumb).to.equal(subCategoryName);\n//Set up rng to choose product\nconst products = await driver.findElements(By.xpath(\"//ol[@class='products list items product-items']/li\"));\nlet rngProduct = Math.floor(Math.random() * products.length + 1);\n//Store product name and price\nconst productName = await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).getText();\nconst productPrice = await driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//span[@class=\"normal-price\"]/span/span[2]/span`)).getText();\n//Click chosen product\nawait driver.findElement(By.xpath(`//ol[@class='products list items product-items']/li[${rngProduct}]//strong/a`)).click();\n//Verify page is correct\nlet currentUrl = await driver.getCurrentUrl()\nexpect(currentUrl.toLocaleLowerCase()).to.contain(productName.replace(/\\s/g, \"-\").toLocaleLowerCase());\n//Verify product information\nconst productPageName = await driver.findElement(By.xpath(\"//div[@class='product-info-main']/div[1]/h1/span\")).getText();\nconst productPagePrice = await driver.findElement(By.xpath(\"//div[@class='product-info-main']/div[3]//span[@class='normal-price']/span/span[2]/span\")).getText();\nexpect(productPageName).to.equal(productName);\nexpect(productPagePrice).to.equal(productPrice);\n\n//Navigate to the category page via breadcrumb\nawait driver.findElement(By.xpath('//div[@class=\"breadcrumbs\"]/ul/li[2]')).click();\n//Store page info\nconst categoryPageTitle = await driver.findElement(By.xpath('//h1[@id=\"page-title-heading\"]/span')).getText();\nexpect(categoryName).to.equal(categoryPageTitle);",
+              "err": {},
+              "uuid": "4361a533-ff75-4fb7-9979-d5b910058119",
+              "parentUUID": "bed6e3ef-4957-496d-8af2-279de4c2673e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Navigates to the category page correctly",
+              "fullTitle": "Tests_for_website_functionality Navigates to the category page correctly",
+              "timedOut": false,
+              "duration": 124,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Navigate to a product catagory\nconst hover = driver.findElement(By.xpath(\"//span[.='Women']\"));\nconst actions = driver.actions({async: true})\n//Click subcategory\nawait actions.move({origin: hover}).press().perform();",
+              "err": {},
+              "uuid": "cfbba4ad-55ec-4c30-a66f-4559454ef4c2",
+              "parentUUID": "bed6e3ef-4957-496d-8af2-279de4c2673e",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "519dcea2-ebd4-4556-909f-6fcb82b16623"
+          "passes": [
+            "4361a533-ff75-4fb7-9979-d5b910058119",
+            "cfbba4ad-55ec-4c30-a66f-4559454ef4c2"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3055,
+          "duration": 5384,
           "root": false,
           "rootEmpty": false,
           "_timeout": 0
