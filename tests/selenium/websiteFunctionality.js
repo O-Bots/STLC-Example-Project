@@ -121,10 +121,20 @@ describe('Tests_for_website_functionality' , function () {
 
     it('Navigates to the category page correctly', async () => {
         //Navigate to a product catagory
-        const hover = driver.findElement(By.xpath("//span[.='Women']"));
+        const categoryhover = driver.findElement(By.xpath("//span[.='Women']"));
+        const subcategoryhover = driver.findElement(By.xpath("//span[.='Tops']"));
         const actions = driver.actions({async: true})
         //Click subcategory
-        await actions.move({origin: hover}).press().perform();
+        await actions.move({origin: categoryhover}).press().perform();
 
+        await actions.move({origin: subcategoryhover}).press().perform();
+        
+        const subCategoryName = await driver.findElement(By.xpath("//span[.='Jackets']")).getText();
+
+        await driver.findElement(By.xpath("//span[.='Jackets']")).click();
+
+        const pageCategory = await driver.findElement(By.xpath("//span[@class='base']")).getText();
+
+        expect(subCategoryName).to.equal(pageCategory);
     });
 });
